@@ -128,25 +128,21 @@ $userid = $_SESSION['userid'];
         $date_array = mysqli_fetch_array($query);
         $date = $date_array['permanentdate'];
         
-                
-        echo $date;
-       
         $today_date = date("Y-m-d", strtotime("0 days"));
-        echo $today_date;
         
-        $query = mysqli_query($con,"select * from income where current_bal>0");
-        if(mysqli_num_rows($query)>0){
-            if($date == $today_date){
+        if($date == $today_date){        
+            $query = mysqli_query($con,"select * from income where current_bal>0");
+            if(mysqli_num_rows($query)>0){
                 $date = date("Y-m-d", strtotime("15 days"));
                 $query = mysqli_query($con,"update date set permanentdate='$date'");
     
-                echo '<script>alert("Please pay your pending dues!");window.location.assign("income.php");</script>';
+                echo '<script>alert("Please pay your pending dues!");window.location.assign("income.php");</script>';   
             }
-        }
-        else{
+
             $date = date("Y-m-d", strtotime("15 days"));
             $query = mysqli_query($con,"update date set permanentdate='$date'");
         }
+
     ?>
     <!-- /#wrapper -->
 
