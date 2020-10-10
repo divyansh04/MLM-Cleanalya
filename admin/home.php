@@ -136,7 +136,7 @@ $userid = $_SESSION['userid'];
         
         $query = mysqli_query($con,"select * from income where current_bal>0");
         if(mysqli_num_rows($query)>0){
-            if($date == $today_date)
+            if($date == $today_date){
                 $date = date("Y-m-d", strtotime("15 days"));
                 $query = mysqli_query($con,"update date set permanentdate='$date'");
     
